@@ -1,8 +1,6 @@
 {
   "name": "ARClip.Editor",
-  "references": ["ARClip.Runtime"],
   "includePlatforms": ["Editor"],
-  "excludePlatforms": [],
-  "allowUnsafeCode": false,
-  "overrideReferences": false
+  "references": ["ARClip.Runtime"],
+  "allowUnsafeCode": false
 }
