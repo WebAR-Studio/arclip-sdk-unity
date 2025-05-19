@@ -1,3 +1,10 @@
+## [1.0.2] - 2025-05-19
+
+### Changed
+
+- Move back to single ARClip.dll. Not support both mode in single DLL.
+
+
 ## [1.0.1] - 2025-05-17
 
 ### Changed
