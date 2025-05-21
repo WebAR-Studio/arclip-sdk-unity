@@ -106,4 +106,24 @@ mergeInto(LibraryManager.library, {
     ARLib_SetAngleForInterp: function(value) {
         window.ARLib.vps.SetAngleForInterp(value)
     },
+
+    ARLib_getCurrentPosition: function() {
+        window.ARLib.location.getCurrentPosition()
+    },
+
+    ARLib_watchPosition: function() {
+        window.ARLib.location.watchPosition()
+    },
+
+    ARLib_clearWatch: function() {
+        window.ARLib.location.clearWatch()
+    },
+
+    ARLib_startHeadingUpdates: function() {
+        window.ARLib.location.startHeadingUpdates()
+    },
+
+    ARLib_stopHeadingUpdates: function() {
+        window.ARLib.location.stopHeadingUpdates()
+    },
 });

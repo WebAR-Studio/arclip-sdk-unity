@@ -1,3 +1,13 @@
+## [1.0.3] - 2025-05-21
+
+### NEW
+
+- Added Location and Heading feature
+
+### Changed
+
+- Fixed `OnVPSLocalized`, `OnVPSError` and `OnUpdateSessionId` callbacks associated values
+
 ## [1.0.2] - 2025-05-19
 
 ### Changed
