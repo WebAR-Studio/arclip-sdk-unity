@@ -1,3 +1,9 @@
+## [1.0.4] - 2025-06-06
+
+### NEW
+
+- Improved communication between native and Unity
+
 ## [1.0.3] - 2025-05-21
 
 ### NEW

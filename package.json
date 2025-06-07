@@ -1,6 +1,6 @@
 {
   "name": "com.arweb.arclip",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "displayName": "AR Clip SDK",
   "description": "Compiled AR Clip with WebGL support",
   "unity": "2020.3",
