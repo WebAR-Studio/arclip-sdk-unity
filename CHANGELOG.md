@@ -1,3 +1,9 @@
+## [1.0.5] - 2025-06-10
+
+### NEW
+
+- Added EnableAR() and DisableAR() for fully control AR flow
+
 ## [1.0.4] - 2025-06-06
 
 ### NEW

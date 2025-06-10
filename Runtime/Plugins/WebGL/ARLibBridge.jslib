@@ -11,6 +11,14 @@ mergeInto(LibraryManager.library, {
         window.ARLib.Initialize()
     },
 
+    ARLib_EnableAR: function() {
+        window.ARLib.EnableAR()
+    },
+
+    ARLib_DisableAR: function() {
+        window.ARLib.DisableAR()
+    },
+
     ARLib_RequestRenderFrame: function() {
         window.ARLib.RequestRenderFrame()
     },
