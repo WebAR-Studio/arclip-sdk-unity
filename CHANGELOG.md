@@ -1,3 +1,9 @@
+## [1.0.6] - 2025-07-17
+
+### NEW
+
+- Update rendering and image tracking
+
 ## [1.0.5] - 2025-06-10
 
 ### NEW
