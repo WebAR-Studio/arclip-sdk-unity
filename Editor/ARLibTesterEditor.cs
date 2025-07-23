@@ -49,6 +49,54 @@ public class ARLibTesterEditor : Editor
         {
             tester.TestVPSPositionUpdate();
         }
+
+        EditorGUILayout.Space(20);
+        if (GUILayout.Button("Send VPS Localized Data", GUILayout.Height(30)))
+        {
+            tester.TestVPSLocalized();
+        }
+
+        EditorGUILayout.Space(20);
+        if (GUILayout.Button("Send VPS Error", GUILayout.Height(30)))
+        {
+            tester.TestVPSError();
+        }
+
+        EditorGUILayout.Space(20);
+        if (GUILayout.Button("Send VPS SessionId", GUILayout.Height(30)))
+        {
+            tester.TestVPSSessionIdUpdate();
+        }
+
+        EditorGUILayout.Space(20);
+        if (GUILayout.Button("Send Location Data", GUILayout.Height(30)))
+        {
+            tester.TestLocationUpdate();
+        }
+
+        EditorGUILayout.Space(20);
+        if (GUILayout.Button("Send Heading Data", GUILayout.Height(30)))
+        {
+            tester.TestHeadingUpdate();
+        }
+
+        EditorGUILayout.Space(20);
+        if (GUILayout.Button("Send Detach Memory Request", GUILayout.Height(30)))
+        {
+            tester.TestDetachMemoryRequest();
+        }
+
+        EditorGUILayout.Space(20);
+        if (GUILayout.Button("Send Surface Tracking Trigger (shared buffer)", GUILayout.Height(30)))
+        {
+            tester.TestSurfaceTrackingTrigger();
+        }
+
+        EditorGUILayout.Space(20);
+        if (GUILayout.Button("Send Camera Render Request", GUILayout.Height(30)))
+        {
+            tester.TestCameraRenderRequest();
+        }
         EditorGUILayout.Space(10);
     }
 } 

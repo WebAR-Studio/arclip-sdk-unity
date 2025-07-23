@@ -1,3 +1,9 @@
+## [1.0.7] - 2025-07-23
+
+### NEW
+
+- Add Demo sample and huge update to README.md
+
 ## [1.0.6] - 2025-07-17
 
 ### NEW
