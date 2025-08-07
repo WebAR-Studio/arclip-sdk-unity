@@ -2,6 +2,31 @@
 
 The **ARClip SDK** by [WebAR Studio](https://web-ar.studio) enables fast and easy integration of WebAR into your Unity WebGL projects.
 
+**AR Clip** is a powerful augmented reality launcher that enables instant access to immersive AR experiences — no full app installation required.
+
+Designed for developers and creators, AR Clip lets you build interactive AR scenes using any modern web stack (like **Three.js**, **Babylon.js**, or your **custom framework**) and launch them using an **App Clip** or a **QR code scan**. The native part of the app leverages **ARKit** and our proprietary **AR Clip VPS engine** to provide high-performance AR, while the content itself is rendered in a **secure WebView** — giving you full flexibility and native power.
+
+Perfect for:
+- Geospatial AR
+- Outdoor installations
+- Guided AR tours
+- Educational overlays
+- Branded marketing experiences
+
+## Features
+
+- 📱 **App Clip–based AR launcher** — open via link or QR code  
+- 🎯 **Full access to ARKit** (camera, motion tracking, VPS)  
+- 📍 **Geo-anchored AR** with AR Clip VPS engine  
+- 🌐 **Web-based content rendering** in secure WebView  
+- 📷 **Built-in QR scanner** for launching custom AR projects  
+- ⚡ **Instant AR launch experience** — no user friction  
+
+---
+
+**AR Clip bridges the gap between native AR performance and the flexibility of WebAR**, making it ideal for developers who want to deliver high-end AR content with zero install barrier.
+
+
 ## 📦 Installation
 
 To add the ARClip SDK to your Unity project:
