@@ -111,9 +111,8 @@ public class ARController : MonoBehaviour
     public void OnEnableVPSButtonTap()
     {
         var settings = new VPSSettings {
-            serverUrl = "https://vps-cu.naviar.io/vps/api/v3",
-            locationsIds = new[] {"2_floor_668696175ec4c318084343f1"},
-            type = "mobile",
+            serverUrl = "https://was-vps.web-ar.xyz/vps/api/v3",
+            locationsIds = new[] {"mariel"},
             gps = false,
             maxFailsCount = 5
         };
