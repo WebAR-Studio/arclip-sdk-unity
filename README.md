@@ -29,13 +29,13 @@ Perfect for:
 
 ## 📦 Installation
 
-To add the ARClip SDK to your Unity project:
+To add the  SDK to your Unity project:
 
 1. Open **Unity** and go to `Window → Package Manager`.
 2. Click the **+** button and select **Add package from Git URL...**
 3. Paste the following URL and click **Add**:
 
-https://github.com/WebAR-Studio/arclip_sdk.git
+[https://github.com/WebAR-Studio/arclip-sdk-unity.git](https://github.com/WebAR-Studio/arclip-sdk-unity.git)
 
 4. The library will be downloaded and added to your project.
 
