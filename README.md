@@ -29,7 +29,7 @@ Perfect for:
 
 ## 📦 Installation
 
-To add the  SDK to your Unity project:
+To add the ARClip SDK to your Unity project:
 
 1. Open **Unity** and go to `Window → Package Manager`.
 2. Click the **+** button and select **Add package from Git URL...**
