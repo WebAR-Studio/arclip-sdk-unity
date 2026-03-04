@@ -186,7 +186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 269224409}
-  - component: {fileID: 269224408}
+  - component: {fileID: 269224410}
   m_Layer: 0
   m_Name: ARController
   m_TagString: Untagged
@@ -194,20 +194,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &269224408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 269224407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de904fa1b7f6643a3aa54ea8d4ecb714, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderCamera: {fileID: 963194227}
-  arlib: {fileID: 81906120}
 --- !u!4 &269224409
 Transform:
   m_ObjectHideFlags: 0
@@ -223,6 +209,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &269224410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269224407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7490fc69f67d41098696b6e3d5b866a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NavigationARController
+  renderCamera: {fileID: 963194227}
+  arlib: {fileID: 81906120}
 --- !u!1 &284470005
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +560,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.06666667
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: bc182bd6513b64dd5988ba30563ae6cb, type: 2}
   m_BuildHeightMesh: 0
@@ -667,9 +667,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 756177846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81dadab0191ea4eee99889b2eca27f58, type: 3}
+  m_Script: {fileID: 11500000, guid: ee04f892b2bc344d19184b6918aa225a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::NavigationUIController
   startButton: {fileID: 1997380750}
   commonScreenPanel: {fileID: 1712274401}
   screenTitle: {fileID: 1559389692}

@@ -28,7 +28,7 @@ public class NavigationARController : MonoBehaviour
     public event Action<String> OnVPSError;
     public event Action<String> OnVPSSessionIdUpdated;
 
-    private UIState currentState = UIState.Loading;
+    private NavigationUIState currentState = NavigationUIState.Loading;
 
     private Dictionary<string, GameObject> trackedImages = new Dictionary<string, GameObject>();
 
@@ -78,7 +78,7 @@ public class NavigationARController : MonoBehaviour
         // }
     }
 
-    public void SetState(UIState state) {
+    public void SetState(NavigationUIState state) {
         currentState = state;
     }
 
@@ -189,7 +189,7 @@ public class NavigationARController : MonoBehaviour
 
     void OnVPSPositionUpdate(VPSPoseData poseData)
     {
-        if (currentState != UIState.VPS) return;
+        if (currentState != NavigationUIState.VPS) return;
         
         OnVPSPositionUpdated?.Invoke(poseData);
     }

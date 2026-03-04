@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using ARLib;
 
-public enum UIState
+public enum NavigationUIState
 {
     VPS,
     Loading
@@ -28,7 +28,7 @@ public class NavigationUIController : MonoBehaviour
     [Header("Route")]
     [SerializeField] private SampleVpsRouteSequencer routeSequencer;
 
-    private UIState currentState = UIState.Loading;
+    private NavigationUIState currentState = NavigationUIState.Loading;
     private bool localized = false;
 
     private void Start()
@@ -47,7 +47,7 @@ public class NavigationUIController : MonoBehaviour
         loaderPanel.SetActive(false);
         commonScreenPanel.SetActive(true);
         screenTitle.text = "VPS";
-        currentState = UIState.VPS;
+        currentState = NavigationUIState.VPS;
         NavigationARController.Instance.SetState(currentState);
         NavigationARController.Instance.OnEnableVPSButtonTap();
     }
@@ -81,7 +81,7 @@ public class NavigationUIController : MonoBehaviour
 
     private void OnLocationUpdate(LocationData location)
     {
-        if (currentState == UIState.VPS)
+        if (currentState == NavigationUIState.VPS)
         {
             locationText.text = $"Latitude: {location.latitude:F6}\nLongitude: {location.longitude:F6}\nAltitude: {location.altitude:F2}m";
         }
@@ -89,7 +89,7 @@ public class NavigationUIController : MonoBehaviour
 
     private void OnHeadingUpdate(HeadingData heading)
     {
-        if (currentState == UIState.VPS)
+        if (currentState == NavigationUIState.VPS)
         {
             headingText.text = $"Heading: {heading.magneticHeading:F1}\nAccuracy: {heading.headingAccuracy:F1}";
         }
@@ -97,7 +97,7 @@ public class NavigationUIController : MonoBehaviour
 
     private void OnVPSPositionUpdate(VPSPoseData poseData)
     {
-        if (currentState == UIState.VPS)
+        if (currentState == NavigationUIState.VPS)
         {
             if (!localized)
             {
@@ -112,7 +112,7 @@ public class NavigationUIController : MonoBehaviour
 
     private void OnVPSError(string errorMessage)
     {
-        if (currentState == UIState.VPS)
+        if (currentState == NavigationUIState.VPS)
         {
             locationText.text = "";
             headingText.text = $"VPS Error:\n{errorMessage}";
@@ -121,7 +121,7 @@ public class NavigationUIController : MonoBehaviour
 
     private void OnVPSSessionIdUpdate(string sessionId)
     {
-        if (currentState == UIState.VPS)
+        if (currentState == NavigationUIState.VPS)
         {
             headingText.text = $"VPS Session ID:\n{sessionId}";
         }
