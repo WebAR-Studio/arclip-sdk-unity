@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ARController : MonoBehaviour
+public class NavigationARController : MonoBehaviour
 {
 
-    public static ARController Instance { get; private set; }
+    public static NavigationARController Instance { get; private set; }
 
     public Camera renderCamera;
     private List<GameObject> currentPlanes = new List<GameObject>();

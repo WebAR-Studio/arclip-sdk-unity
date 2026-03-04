@@ -11,7 +11,7 @@ public enum UIState
     Loading
 }
 
-public class UIController : MonoBehaviour
+public class NavigationUIController : MonoBehaviour
 {
     [Header("Start")]
     [SerializeField] private Button startButton;
@@ -37,7 +37,7 @@ public class UIController : MonoBehaviour
         SubscribeToAREvents();
         commonScreenPanel.SetActive(false);
         loaderPanel.SetActive(false);
-        ARController.Instance.preloadImages();
+        NavigationARController.Instance.preloadImages();
 
     }
 
@@ -48,8 +48,8 @@ public class UIController : MonoBehaviour
         commonScreenPanel.SetActive(true);
         screenTitle.text = "VPS";
         currentState = UIState.VPS;
-        ARController.Instance.SetState(currentState);
-        ARController.Instance.OnEnableVPSButtonTap();
+        NavigationARController.Instance.SetState(currentState);
+        NavigationARController.Instance.OnEnableVPSButtonTap();
     }
 
     private void ShowLoader()
@@ -60,22 +60,22 @@ public class UIController : MonoBehaviour
 
     private void SubscribeToAREvents()
     {
-        ARController.Instance.OnLocationUpdated += OnLocationUpdate;
-        ARController.Instance.OnHeadingUpdated += OnHeadingUpdate;
-        ARController.Instance.OnVPSPositionUpdated += OnVPSPositionUpdate;
-        ARController.Instance.OnVPSError += OnVPSError;
-        ARController.Instance.OnVPSSessionIdUpdated += OnVPSSessionIdUpdate;
+        NavigationARController.Instance.OnLocationUpdated += OnLocationUpdate;
+        NavigationARController.Instance.OnHeadingUpdated += OnHeadingUpdate;
+        NavigationARController.Instance.OnVPSPositionUpdated += OnVPSPositionUpdate;
+        NavigationARController.Instance.OnVPSError += OnVPSError;
+        NavigationARController.Instance.OnVPSSessionIdUpdated += OnVPSSessionIdUpdate;
     }
 
     private void OnDestroy()
     {
-        if (ARController.Instance != null)
+        if (NavigationARController.Instance != null)
         {
-            ARController.Instance.OnLocationUpdated -= OnLocationUpdate;
-            ARController.Instance.OnHeadingUpdated -= OnHeadingUpdate;
-            ARController.Instance.OnVPSPositionUpdated -= OnVPSPositionUpdate;
-            ARController.Instance.OnVPSError -= OnVPSError;
-            ARController.Instance.OnVPSSessionIdUpdated -= OnVPSSessionIdUpdate;
+            NavigationARController.Instance.OnLocationUpdated -= OnLocationUpdate;
+            NavigationARController.Instance.OnHeadingUpdated -= OnHeadingUpdate;
+            NavigationARController.Instance.OnVPSPositionUpdated -= OnVPSPositionUpdate;
+            NavigationARController.Instance.OnVPSError -= OnVPSError;
+            NavigationARController.Instance.OnVPSSessionIdUpdated -= OnVPSSessionIdUpdate;
         }
     }
 
