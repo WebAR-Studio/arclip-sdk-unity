@@ -1,6 +1,6 @@
 {
   "name": "com.arweb.arclip",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "displayName": "AR Clip SDK",
   "description": "Compiled AR Clip with WebGL support",
   "unity": "2020.3",
@@ -8,6 +8,9 @@
     "name": "Web-AR.Studio",
     "email": "cto@web-ar.studio"
   },
+  "dependencies": {
+    "com.unity.ai.navigation": "2.0.10"
+ },
   "samples": [
     {
       "displayName": "WebGLTemplates",

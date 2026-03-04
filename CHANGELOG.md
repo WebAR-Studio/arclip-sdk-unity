@@ -1,3 +1,9 @@
+## [1.0.8] - 2025-03-04
+
+### NEW
+
+- Add VPS Navigation sample with waypoint system
+
 ## [1.0.7] - 2025-07-23
 
 ### NEW
