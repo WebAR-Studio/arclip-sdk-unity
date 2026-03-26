@@ -29,7 +29,21 @@ Perfect for:
 
 ## 📦 Installation
 
-To add the ARClip SDK to your Unity project:
+### Prerequisites
+
+If you plan to build for the **WebXR** target, install **WebXR Export** first:
+
+1. Open **Unity** and go to `Window → Package Manager`.
+2. Click the **+** button and select **Add package from Git URL...**
+3. Paste the following URL and click **Add**:
+
+[https://github.com/De-Panther/unity-webxr-export.git?path=/Packages/webxr](https://github.com/De-Panther/unity-webxr-export.git?path=/Packages/webxr)
+
+> Full instructions and documentation for WebXR Export are available at [https://github.com/De-Panther/unity-webxr-export](https://github.com/De-Panther/unity-webxr-export).
+
+### ARClip SDK
+
+After installing the prerequisites, add the ARClip SDK:
 
 1. Open **Unity** and go to `Window → Package Manager`.
 2. Click the **+** button and select **Add package from Git URL...**
