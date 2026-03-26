@@ -51,11 +51,29 @@ error CS0433: The type 'ARLibTester' exists in both 'ARLib, Version=0.0.0.0, Cul
 **Step 1 — WebGLTemplates**
 - In **Package Manager → ARClip → Samples**, import the **WebGLTemplates** sample.
 - Copy the entire `WebGLTemplates` folder into your project’s `Assets/` root (Unity only lists templates placed there).
-- In **Project Settings → Player → WebGL → Resolution and Presentation**, pick your copied template from the **WebGL Template** dropdown.
+- Available templates in the sample:
+  - `ARLib` for **ARClip App**
+  - `8thWallVPS` for **8th Wall**
+  - `WebXRVPS` for **WebXR**
+- If you use `8thWallVPS`, you must also add the proprietary 8th Wall self-hosted engine files into `Assets/WebGLTemplates/8thWallVPS/vendor/8thwall/` as described in the template README.
+- `WebXRVPS` expects the WebXR runtime/export package used by your WebXR build, because the template expects `unityInstance.Module.WebXR` to exist.
 
 **Step 2 — TransparentBackground**
 - Import the **TransparentBackground** sample (if it’s separate in the package).
 - Move `TransparentBackground.jslib` to `Assets/Plugins` (root level) so the WebGL build can load it.
+
+**Step 3 — Build Window**
+- Open `ARClip/Build Window`.
+- Choose the runtime target you want to build:
+  - `ARClip App`
+  - `8th Wall`
+  - `WebXR`
+- The build window is now the primary way to switch targets. It applies the correct WebGL template for the selected runtime before build.
+- For `WebXR`, the window also checks prerequisites and can auto-configure:
+  - OpenUPM scoped registry
+  - `com.de-panther.webxr`
+  - `WebXR Export` loader for `WebGL`
+- When switching away from `WebXR`, the window disables the `WebXR Export` loader for `WebGL` so the project does not stay in XR mode accidentally.
 
 ---
 
@@ -65,15 +83,16 @@ error CS0433: The type 'ARLibTester' exists in both 'ARLib, Version=0.0.0.0, Cul
 2. [Installation](#installation)
 3. [Quick Start](#quick-start)
 4. [Testing Workflow](#testing-workflow)
-5. [Events](#events)
-6. [API Reference](#api-reference)
+5. [Build Targets](#build-targets)
+6. [Events](#events)
+7. [API Reference](#api-reference)
     - [Initialization & Core Control](#initialization--core-control)
     - [Surface (Plane) Tracking](#surface-plane-tracking)
     - [Image Tracking](#image-tracking)
     - [VPS (Visual Positioning System)](#vps-visual-positioning-system)
     - [Location & Heading](#location--heading)
-7. [Editor vs Build Behavior](#editor-vs-build-behavior)
-8. [QA / FAQ](#qa--faq)
+8. [Editor vs Build Behavior](#editor-vs-build-behavior)
+9. [QA / FAQ](#qa--faq)
 
 ---
 
@@ -81,6 +100,8 @@ error CS0433: The type 'ARLibTester' exists in both 'ARLib, Version=0.0.0.0, Cul
 
 - **Unity** 2020 LTS or newer (tested on 2021+).
 - **Build Target**: WebGL (other platforms won’t call the JS side).
+- For **8th Wall**, you must provide the self-hosted 8th Wall engine files inside `Assets/WebGLTemplates/8thWallVPS/vendor/8thwall/`.
+- For **WebXR**, the project must include the WebXR export/runtime package (`com.de-panther.webxr`) and have `WebXR Export` enabled for `WebGL`.
 
 > ❗ In the Unity **Editor** play mode, most native calls are skipped (`Application.isEditor` guard). You will not see real AR behavior until you **build**, **upload the WebGL build to our backend**, and **test it by scanning the QR code in our mobile app**. For quick testing inside the Editor, use **ARLibTester** — it simulates the native calls so you can verify your logic without a WebGL build.
 
@@ -90,6 +111,15 @@ error CS0433: The type 'ARLibTester' exists in both 'ARLib, Version=0.0.0.0, Cul
 
 ### Camera Component Disabled
 - The GameObject that holds `renderCamera` must have its **Camera component disabled**. `ARLibController` invokes `renderCamera.Render()` manually each frame.
+
+### Multi-Target Camera Setup
+- The package now supports build-time runtime selection for `ARClip App`, `8th Wall`, and `WebXR`.
+- `ARClip App` and `8th Wall` can share the same scene camera.
+- `WebXR` should use its own dedicated camera rig/configuration.
+- For multi-target scenes, use:
+  - `ARClipCameraPlaceholder` on the camera anchor/object
+  - `ARClipCameraBootstrap` on the object that owns `ARLibController`
+- At build time, the selected runtime target is baked into the build, and `ARClipCameraBootstrap` chooses the corresponding camera for that target. It does not try to detect the runtime environment dynamically.
 
 ### Transparent WebGL Background
 - Ensure `TransparentBackground.jslib` is present in the project so the WebGL canvas supports transparency.
@@ -105,7 +135,8 @@ error CS0433: The type 'ARLibTester' exists in both 'ARLib, Version=0.0.0.0, Cul
 2. Add `ARLibController` to any GameObject and assign that camera to `renderCamera`.
 3. *(Optional)* Add `ARLibTester` next to `ARLibController` to simulate native calls in the Unity Editor.
 4. For WebGL transparency, export the **TransparentBackground** sample from the package and move `TransparentBackground.jslib` to the root `Assets/Plugins` folder.
-5. Now you can use `ARLibController` from your scripts (e.g., `ARBootstrap`).
+5. If the project must build for multiple browser runtimes, replace the direct scene camera setup with `ARClipCameraPlaceholder` + `ARClipCameraBootstrap`.
+6. Now you can use `ARLibController` from your scripts (e.g., `ARBootstrap`).
 
 ```csharp
 using UnityEngine;
@@ -154,12 +185,68 @@ public class ARBootstrap : MonoBehaviour
 
 ## Testing Workflow
 
-1. **Export WebGL Template**: From the package **Samples**, export the provided WebGL template and copy it to your project root under `Assets` (Unity only lists templates placed there).
-2. **Select Template in Player Settings**: Open **Project Settings → Player → WebGL → Resolution and Presentation → WebGL Template** and choose the exported template.
-3. **Build the Project**: Create a WebGL build (File → Build Settings → WebGL → Build).
-4. **Zip the Build**: Put the contents of the build folder into a `.zip`. **`index.html` must be at the root of the archive**.
-5. **Upload to Backend**: Go to https://cdn.mobile.web-ar.studio/clip/pages/zip_uploader.html and upload the zip.
-6. **Test on Mobile**: Scan the generated QR code with our mobile app: https://apps.apple.com/app/ar-clip/id6742754238
+1. Import and copy the package `WebGLTemplates` sample into your project `Assets/` folder.
+2. Open `ARClip/Build Window`.
+3. Select the runtime target you want to build:
+   - `ARClip App`
+   - `8th Wall`
+   - `WebXR`
+4. If you selected:
+   - `8th Wall`: make sure `Assets/WebGLTemplates/8thWallVPS/vendor/8thwall/` contains the self-hosted 8th Wall binaries.
+   - `WebXR`: let the build window install/validate `com.de-panther.webxr` and `WebXR Export` for `WebGL`.
+5. Build a WebGL player. The selected runtime target determines:
+   - the WebGL template
+   - the baked runtime config
+   - which camera is selected by `ARClipCameraBootstrap`
+6. For `ARClip App`:
+   - zip the build with `index.html` at the archive root
+   - upload it to https://cdn.mobile.web-ar.studio/clip/pages/zip_uploader.html
+   - scan the generated QR code with our mobile app: https://apps.apple.com/app/ar-clip/id6742754238
+7. For `8th Wall` and `WebXR`:
+   - serve the build over HTTPS
+   - open it in a supported mobile browser
+   - if local HTTPS certificates or camera/video permissions cause issues during testing, exposing the local server through `ngrok` is usually enough, because it gives the build a public HTTPS URL that works better for browser camera access
+
+If needed, you can still inspect the active template manually in **Project Settings → Player → WebGL → Resolution and Presentation → WebGL Template**, but the build window should be treated as the source of truth.
+
+---
+
+## Build Targets
+
+The package now supports three WebGL runtime targets selected at build time:
+
+| Target        | WebGL Template | Runtime host | Camera setup |
+| ------------- | -------------- | ------------ | ------------ |
+| `ARClip App`  | `ARLib`        | ARClip native app / WebView | Standard ARClip camera |
+| `8th Wall`    | `8thWallVPS`   | Browser with 8th Wall | Same camera as `ARClip App` |
+| `WebXR`       | `WebXRVPS`     | Browser with WebXR Export | Dedicated WebXR camera |
+
+### Build-Time Selection
+
+- Runtime selection is explicit and happens before build.
+- The build embeds the selected target in a generated build config.
+- `ARClipCameraBootstrap` reads that baked config and chooses the correct camera for the build.
+- The package does not try to infer the host environment at runtime.
+
+### WebXR Notes
+
+- `WebXRVPS` now includes an ARClip-compatible JavaScript bridge:
+  - `window.ARLib`
+  - `window.ARLibNative`
+  - VPS callbacks back into Unity (`OnVPSReady`, `OnVPSLocalized`, `OnVPSError`)
+- WebXR owns the camera pose itself, so the bridge provides camera API compatibility but does not manually push camera pose updates into Unity.
+- `SetupVPS(settings)` is used as the main source of VPS configuration in `WebXR`, including:
+  - `serverUrl`
+  - `locationsIds`
+  - `maxFailsCount`
+- If `XRRig` or related WebXR objects in the sample scenes show missing or broken components, first install the WebXR Export package (`com.de-panther.webxr`).
+- If the rig is still broken after installing the package, recreate it from the Unity hierarchy with `XR -> Convert to XR Rig`, then reassign the new rig to `ARClipCameraPlaceholder.webXrRigRoot` if needed.
+
+### 8th Wall Notes
+
+- `8thWallVPS` includes the ARClip JavaScript bridge and supports common API, camera API, and VPS API.
+- `ARClip App` and `8th Wall` are expected to share the same scene camera setup.
+- Surface tracking and image tracking are not implemented by the `8th Wall` bridge yet.
 
 ---
 

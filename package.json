@@ -1,6 +1,6 @@
 {
   "name": "com.arweb.arclip",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "displayName": "AR Clip SDK",
   "description": "Compiled AR Clip with WebGL support",
   "unity": "2020.3",
@@ -14,7 +14,7 @@
   "samples": [
     {
       "displayName": "WebGLTemplates",
-      "description": "ARLib WebGL UI template for browser builds. Move folder `WebGLTemplates` into `Assets` folder after Import and Reload editor",
+      "description": "ARClip App, 8th Wall, and WebXR WebGL templates for browser builds. Move folder `WebGLTemplates` into `Assets` folder after Import and Reload editor",
       "path": "Samples~/WebGLTemplates"
     },
     {

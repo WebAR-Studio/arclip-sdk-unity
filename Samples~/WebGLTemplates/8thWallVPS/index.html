@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+    >
+    <title>{{{ PRODUCT_NAME }}}</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script async id="xr-engine-script" src="vendor/8thwall/xr.js"></script>
+  </head>
+  <body>
+    <canvas id="camerafeed"></canvas>
+    <canvas id="unity-canvas" tabindex="-1"></canvas>
+    <div id="unity-loading-bar">
+      <div id="unity-progress-bar-empty">
+        <div id="unity-progress-bar-full"></div>
+      </div>
+    </div>
+
+    <script>
+      const buildUrl = 'Build';
+      window.__UNITY_CONFIG = {
+        loaderUrl:          buildUrl + '/{{{ LOADER_FILENAME }}}',
+        dataUrl:            buildUrl + '/{{{ DATA_FILENAME }}}',
+        frameworkUrl:       buildUrl + '/{{{ FRAMEWORK_FILENAME }}}',
+#if USE_WASM
+        codeUrl:            buildUrl + '/{{{ CODE_FILENAME }}}',
+#else
+        codeUrl:            '',
+#endif
+        streamingAssetsUrl: 'StreamingAssets',
+        companyName:        {{{ JSON.stringify(COMPANY_NAME) }}},
+        productName:        {{{ JSON.stringify(PRODUCT_NAME) }}},
+        productVersion:     {{{ JSON.stringify(PRODUCT_VERSION) }}},
+      };
+    </script>
+
+    <script src="arclip.min.js"></script>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
