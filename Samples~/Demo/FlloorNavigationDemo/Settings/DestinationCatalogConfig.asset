@@ -1,0 +1,40 @@
+﻿%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3f0d78cd049b543b6776b6e524f7c9, type: 3}
+  m_Name: DestinationCatalogConfig
+  m_EditorClassIdentifier: 
+  _categories:
+  - _id: shops
+    _title: "\u041C\u0430\u0433\u0430\u0437\u0438\u043D\u044B"
+    _icon: {fileID: 21300000, guid: 5d123951a536bf146ac5a8212d549f0d, type: 3}
+    _iconFallback: "\u2302"
+    _locationsConfig: {fileID: 11400000, guid: 2b8d5f2e3f8242c3874bdbbc3efccf6a, type: 2}
+  - _id: food
+    _title: "\u0415\u0434\u0430"
+    _icon: {fileID: 21300000, guid: d61dd88d472e57b42a67aef6810d6250, type: 3}
+    _iconFallback: "\u2668"
+    _locationsConfig: {fileID: 11400000, guid: 5d4ad6d30b7c4d74ad9395b44dd0e292, type: 2}
+  - _id: entertainment
+    _title: "\u0420\u0430\u0437\u0432\u043B\u0435\u0447\u0435\u043D\u0438\u044F"
+    _icon: {fileID: 21300000, guid: 1636a828734dae34884c772f6ddb63da, type: 3}
+    _iconFallback: "\u25C9"
+    _locationsConfig: {fileID: 11400000, guid: 9c7a84b319f84f879f4d3680f9b2d11a, type: 2}
+  - _id: kids
+    _title: "\u0414\u0435\u0442\u044F\u043C"
+    _icon: {fileID: 21300000, guid: 16a5c3f4ba8027544a6fc1452aae44ba, type: 3}
+    _iconFallback: "\u25CC"
+    _locationsConfig: {fileID: 11400000, guid: 7bbad29f6d9743ad8267ac0af55da58f, type: 2}
+  - _id: services
+    _title: "\u0423\u0441\u043B\u0443\u0433\u0438"
+    _icon: {fileID: 21300000, guid: bb76dbd7f817a3640ac2e956eea6a9df, type: 3}
+    _iconFallback: "\u2713"
+    _locationsConfig: {fileID: 11400000, guid: c7b2ff56a90d40bda8b176e40f6f46e0, type: 2}

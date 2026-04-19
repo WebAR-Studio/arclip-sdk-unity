@@ -1,0 +1,1146 @@
+{
+  "_id": "69677e2caa412b1a0616d0f0",
+  "title": "Обучение пожарной эвакуации",
+  "description": "Обучение и практический экзамен по пожарной эвакуации и реагированию на очаг возгорания",
+  "course_key": "fire_safety",
+  "image_url": "https://cdn.mobile.web-ar.studio/geropharm/media/courses/fire.png",
+  "metadata": {
+    "author": "Отдел охраны труда",
+    "tags": [
+      "fire_safety",
+      "evacuation",
+      "exam",
+      "training",
+      "emergency"
+    ],
+    "difficulty": "intermediate",
+    "duration_minutes": 3,
+    "category": "Пожарная безопасность",
+    "is_exam": true
+  },
+  "scenarios": [
+    {
+      "entity_id": "fire_exam_step_2",
+      "components": [
+        {
+          "type": "Transform",
+          "data": {
+            "anchor_type": "UI",
+            "position": {
+              "X": 0,
+              "Y": 0,
+              "Z": 0
+            }
+          }
+        },
+        {
+          "type": "Buttons",
+          "data": {
+            "buttons": [
+              {
+                "id": "next",
+                "label": "Начать"
+              }
+            ]
+          }
+        },
+        {
+          "type": "Head",
+          "data": {
+            "text": "Добро пожаловать в экзамен по пожарной эвакуации!"
+          }
+        },
+        {
+          "type": "Text",
+          "subtype": "plain",
+          "data": {
+            "text": "У вас есть 3 минуты, чтобы обнаружить место задымления, собрать необходимые средства (ключ и огнетушитель), попытаться потушить пожар, включить системы пожарной автоматики и эвакуироваться через выход.\n Внимание! Для начала прохождения эвакуации - пройдите к главному меню упаковочной машины. Если вы начнете экзамен у выхода из здания - экзамен завершится автоматически!"
+          }
+        },
+        {
+          "type": "Timer",
+          "data": {
+            "direction": "Backward",
+            "max_time": 180
+          }
+        },
+        {
+          "type": "Navigation",
+          "data": [
+            {
+              "navmesh_asset_id": "main_navmesh",
+              "target": {
+                "poi_id": "exit"
+              },
+              "arrival_radius_m": 3
+            }
+          ]
+        },
+        {
+          "type": "Marker",
+          "data": [
+            {
+              "id": "control_cabinet",
+              "text": "Шкаф управления",
+              "position": {
+                "X": 0.557,
+                "Y": -0.177,
+                "Z": -2.109
+              },
+              "location_id": "control_cabinet",
+              "nav_mesh": "main_navmesh"
+            },
+            {
+              "id": "exit",
+              "text": "Выход",
+              "position": {
+                "x": 21.409759521484375,
+                "y": -1.7969255447387695,
+                "z": -2.753084897994995
+              },
+              "location_id": "exit",
+              "nav_mesh": "main_navmesh"
+            }
+          ]
+        },
+        {
+          "type": "Object",
+          "data": [
+            {
+              "id": "btn_extinguish_marker",
+              "type": "model",
+              "data": {
+                "asset_id": "extinguish_button_asset",
+                "text": "Потушить",
+                "triggerRadius": 1,
+                "coliider_size": {
+                  "X": 0.25,
+                  "Y": 0.25,
+                  "Z": 0.25
+                },
+                "coliider_center": {
+                  "X": 0,
+                  "Y": 0,
+                  "Z": 0
+                }
+              },
+              "transform": {
+                "anchor_type": "World",
+                "position": {
+                  "X": 0.925,
+                  "Y": -0.537,
+                  "Z": -2.344
+                },
+                "euler_angles": {
+                  "X": 0,
+                  "Y": 180,
+                  "Z": 0
+                },
+                "scale": {
+                  "X": 1,
+                  "Y": 1,
+                  "Z": 1
+                }
+              }
+            },
+            {
+              "id": "btn_fire_automation_marker",
+              "type": "model",
+              "variableName": "seq_fire_automation_marker",
+              "data": {
+                "asset_id": "fire_signal_model_asset",
+                "text": "Сигнал",
+                "triggerRadius": 1,
+                "coliider_size": {
+                  "X": 0.1,
+                  "Y": 0.1,
+                  "Z": 0.1
+                },
+                "coliider_center": {
+                  "X": 0,
+                  "Y": 0,
+                  "Z": 0
+                }
+              },
+              "transform": {
+                "anchor_type": "World",
+                "position": {
+                  "X": 2.588,
+                  "Y": -0.184,
+                  "Z": -6.178
+                },
+                "euler_angles": {
+                  "X": 0,
+                  "Y": 180,
+                  "Z": 0
+                },
+                "scale": {
+                  "X": 2,
+                  "Y": 2,
+                  "Z": 2
+                }
+              }
+            },
+            {
+              "id": "smoke",
+              "type": "model_res",
+              "data": {
+                "asset_id": "smoke_vfx",
+                "text": "Дым над шкафом управления"
+              },
+              "transform": {
+                "anchor_type": "World",
+                "position": {
+                  "X": 0.557,
+                  "Y": -0.177,
+                  "Z": -2.109
+                },
+                "euler_angles": {
+                  "X": 0,
+                  "Y": 0,
+                  "Z": 0
+                },
+                "scale": {
+                  "X": 0.2,
+                  "Y": 0.2,
+                  "Z": 0.2
+                }
+              }
+            },
+            {
+              "id": "smoke_fire",
+              "type": "model_res",
+              "data": {
+                "asset_id": "smoke_fire_vfx",
+                "text": "Дым над шкафом управления и огнем"
+              },
+              "transform": {
+                "anchor_type": "World",
+                "position": {
+                  "X": 0.557,
+                  "Y": -0.177,
+                  "Z": -2.109
+                },
+                "euler_angles": {
+                  "X": 0,
+                  "Y": 0,
+                  "Z": 0
+                },
+                "scale": {
+                  "X": 0.2,
+                  "Y": 0.2,
+                  "Z": 0.2
+                }
+              }
+            },
+            {
+              "id": "extinguisher_model",
+              "type": "model_res",
+              "data": {
+                "triggerRadius": 1,
+                "asset_id": "extinguisher_model_asset",
+                "text": "Модель огнетушителя",
+                "coliider_size": {
+                  "X": 1,
+                  "Y": 4.067739,
+                  "Z": 1
+                },
+                "coliider_center": {
+                  "X": 0,
+                  "Y": 2.47296,
+                  "Z": 0
+                }
+              },
+              "transform": {
+                "anchor_type": "World",
+                "position": {
+                  "X": 6.224,
+                  "Y": -0.346,
+                  "Z": -6.85
+                },
+                "euler_angles": {
+                  "X": 0,
+                  "Y": -26.048,
+                  "Z": 0
+                },
+                "scale": {
+                  "X": 0.1,
+                  "Y": 0.1,
+                  "Z": 0.1
+                }
+              }
+            },
+            {
+              "id": "key_model",
+              "type": "model",
+              "data": {
+                "triggerRadius": 1,
+                "asset_id": "key_model_asset",
+                "text": "Модель ключа от шкафа управления",
+                "coliider_size": {
+                  "X": 1,
+                  "Y": 2,
+                  "Z": 0.5
+                },
+                "coliider_center": {
+                  "X": 0,
+                  "Y": 0,
+                  "Z": 0
+                }
+              },
+              "transform": {
+                "anchor_type": "World",
+                "position": {
+                  "X": 1.953,
+                  "Y": -1.035,
+                  "Z": -2.299
+                },
+                "euler_angles": {
+                  "X": 0,
+                  "Y": 5.364,
+                  "Z": 0
+                },
+                "scale": {
+                  "X": 0.15,
+                  "Y": 0.15,
+                  "Z": 0.15
+                }
+              }
+            },
+            {
+              "id": "extinguish_effect",
+              "type": "model_res",
+              "data": {
+                "asset_id": "extinguish_effect_asset",
+                "text": "Анимация тушения пожара огнетушителем"
+              },
+              "transform": {
+                "anchor_type": "World",
+                "position": {
+                  "X": 1.179,
+                  "Y": -0.67,
+                  "Z": -2.793
+                },
+                "euler_angles": {
+                  "X": 0,
+                  "Y": 232.308,
+                  "Z": 0
+                },
+                "scale": {
+                  "X": 0.1,
+                  "Y": 0.1,
+                  "Z": 0.1
+                }
+              }
+            },
+            {
+              "id": "message_fire_location",
+              "type": "message",
+              "data": {
+                "title": "Задымление найдено",
+                "text": "Найдено место задымления.",
+                "show_time": 3
+              }
+            },
+            {
+              "id": "message_found_extinguisher",
+              "type": "message",
+              "data": {
+                "title": "Огнетушитель найден",
+                "text": "Найден огнетушитель.",
+                "show_time": 3
+              }
+            },
+            {
+              "id": "message_found_key",
+              "type": "message",
+              "data": {
+                "title": "Ключ найден",
+                "text": "Найден ключ от шкафа управления.",
+                "show_time": 3
+              }
+            },
+            {
+              "id": "message_cannot_extinguish",
+              "type": "message",
+              "data": {
+                "title": "Попытка тушения",
+                "text": "Произведена попытка тушения пожара. Потушить не удалось.",
+                "show_time": 3
+              }
+            },
+            {
+              "id": "message_missing_items",
+              "type": "message",
+              "data": {
+                "title": "Невозможно потушить",
+                "text": "Невозможно произвести тушение. Вам нужно открыть дверь шкафа управления и взять огнетушитель для попытки тушения",
+                "show_time": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "Audio",
+          "subtype": "file",
+          "data": {
+            "id": "sirena",
+            "source": "asset",
+            "asset_id": "sirena_audio"
+          }
+        },
+        {
+          "type": "ExamVariables",
+          "data": [
+            "found_extinguisher",
+            "found_key",
+            "extinguishAttempt",
+            "automationEnabled",
+            "automation.timestamp",
+            "timer.start",
+            "timer.finish",
+            "timer.value"
+          ]
+        }
+      ],
+      "events": {
+        "triggers": [
+          {
+            "on": "start",
+            "actions": [
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "found_extinguisher",
+                    "type": "string",
+                    "value": "не найден"
+                  }
+                }
+              },
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "found_key",
+                    "type": "string",
+                    "value": "закрыта"
+                  }
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "false",
+                  "ref": "smoke"
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "false",
+                  "ref": "smoke_fire"
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "false",
+                  "ref": "extinguisher_model"
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "false",
+                  "ref": "key_model"
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "false",
+                  "ref": "extinguish_effect"
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "false",
+                  "ref": "message_fire_location"
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "false",
+                  "ref": "message_found_extinguisher"
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "false",
+                  "ref": "message_found_key"
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "false",
+                  "ref": "message_cannot_extinguish"
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "false",
+                  "ref": "message_missing_items"
+                }
+              },
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "STATUS_EXTINGUISHER",
+                    "type": "string",
+                    "value": "null"
+                  }
+                }
+              },
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "STATUS_KEY",
+                    "type": "string",
+                    "value": "null"
+                  }
+                }
+              },
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "STATUS_EXTINGUISH",
+                    "type": "string",
+                    "value": "null"
+                  }
+                }
+              },
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "STATUS_SIGNAL",
+                    "type": "string",
+                    "value": "null"
+                  }
+                }
+              },
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "STATUS_SAFE",
+                    "type": "string",
+                    "value": "success"
+                  }
+                }
+              },
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "STATUS_EXIT",
+                    "type": "string",
+                    "value": "null"
+                  }
+                }
+              },
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "STATUS_TIME",
+                    "type": "string",
+                    "value": "success"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "on": "click",
+            "when": {
+              "id": "main.next"
+            },
+            "actions": [
+              {
+                "do": "enable",
+                "args": {
+                  "status": "false",
+                  "ref": "main"
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "true",
+                  "ref": "smoke"
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "false",
+                  "ref": "smoke_fire"
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "true",
+                  "ref": "extinguisher_model"
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "true",
+                  "ref": "key_model"
+                }
+              },
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "timer.start",
+                    "type": "bool",
+                    "value": true
+                  }
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "true",
+                  "ref": "btn_extinguish_marker"
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "true",
+                  "ref": "btn_fire_automation_marker"
+                }
+              },
+              {
+                "do": "set.state",
+                "args": {
+                  "type": "Navigation",
+                  "status": "Start",
+                  "ref": "exit"
+                }
+              }
+            ]
+          },
+          {
+            "on": "click",
+            "when": {
+              "id": "btn_fire_automation_marker"
+            },
+            "actions": [
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "STATUS_SIGNAL",
+                    "type": "string",
+                    "value": "success"
+                  }
+                }
+              },
+              {
+                "do": "audio.play",
+                "args": {
+                  "ref": "sirena_audio"
+                }
+              }
+            ]
+          },
+          {
+            "on": "click",
+            "when": {
+              "id": "btn_extinguish_marker",
+              "variableName": "STATUS_KEY",
+              "comparison": "!=",
+              "value": "success"
+            },
+            "actions": [
+              {
+                "do": "enable",
+                "args": {
+                  "status": "true",
+                  "ref": "message_missing_items"
+                }
+              }
+            ]
+          },
+          {
+            "on": "click",
+            "when": {
+              "id": "btn_extinguish_marker",
+              "variableName": "STATUS_EXTINGUISHER",
+              "comparison": "!=",
+              "value": "success"
+            },
+            "actions": [
+              {
+                "do": "enable",
+                "args": {
+                  "status": "true",
+                  "ref": "message_missing_items"
+                }
+              }
+            ]
+          },
+          {
+            "on": "click",
+            "when": {
+              "id": "btn_extinguish_marker",
+              "variableName": "STATUS_KEY",
+              "comparison": "==",
+              "value": "success"
+            },
+            "actions": [
+              {
+                "do": "enable",
+                "when": {
+                  "variableName": "STATUS_EXTINGUISHER",
+                  "comparison": "!=",
+                  "value": "success"
+                },
+                "args": {
+                  "status": "true",
+                  "ref": "message_missing_items"
+                }
+              },
+              {
+                "do": "enable",
+                "when": {
+                  "variableName": "STATUS_EXTINGUISHER",
+                  "comparison": "==",
+                  "value": "success"
+                },
+                "args": {
+                  "status": "true",
+                  "ref": "message_cannot_extinguish"
+                }
+              },
+              {
+                "do": "enable",
+                "when": {
+                  "variableName": "STATUS_EXTINGUISHER",
+                  "comparison": "==",
+                  "value": "success"
+                },
+                "args": {
+                  "status": "true",
+                  "ref": "extinguish_effect"
+                }
+              },
+              {
+                "do": "set.variable",
+                "when": {
+                  "variableName": "STATUS_EXTINGUISHER",
+                  "comparison": "==",
+                  "value": "success"
+                },
+                "args": {
+                  "variable": {
+                    "name": "STATUS_EXTINGUISH",
+                    "type": "string",
+                    "value": "success"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "on": "click",
+            "when": {
+              "id": "extinguisher_model"
+            },
+            "actions": [
+              {
+                "do": "enable",
+                "args": {
+                  "status": "false",
+                  "ref": "extinguisher_model"
+                }
+              },
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "STATUS_EXTINGUISHER",
+                    "type": "string",
+                    "value": "success"
+                  }
+                }
+              },
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "found_extinguisher",
+                    "type": "string",
+                    "value": "найден"
+                  }
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "true",
+                  "ref": "message_found_extinguisher"
+                }
+              }
+            ]
+          },
+          {
+            "on": "click",
+            "when": {
+              "id": "key_model"
+            },
+            "actions": [
+              {
+                "do": "enable",
+                "args": {
+                  "status": "false",
+                  "ref": "key_model"
+                }
+              },
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "STATUS_KEY",
+                    "type": "string",
+                    "value": "success"
+                  }
+                }
+              },
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "found_key",
+                    "type": "string",
+                    "value": "открыта"
+                  }
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "false",
+                  "ref": "smoke"
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "true",
+                  "ref": "smoke_fire"
+                }
+              },
+              {
+                "do": "enable",
+                "args": {
+                  "status": "true",
+                  "ref": "message_found_key"
+                }
+              }
+            ]
+          },
+          {
+            "on": "navmeshArea.arrived",
+            "when": {
+              "id": "exit"
+            },
+            "actions": [
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "timer.start",
+                    "type": "bool",
+                    "value": false
+                  }
+                }
+              },
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "STATUS_EXIT",
+                    "type": "string",
+                    "value": "success"
+                  }
+                }
+              },
+              {
+                "do": "step.complete"
+              }
+            ]
+          },
+          {
+            "on": "navmeshArea.lost",
+            "when": {
+              "id": "exit"
+            },
+            "actions": [
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "timer.start",
+                    "type": "bool",
+                    "value": false
+                  }
+                }
+              },
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "STATUS_SAFE",
+                    "type": "string",
+                    "value": "null"
+                  }
+                }
+              },
+              {
+                "do": "step.complete"
+              }
+            ]
+          },
+          {
+            "on": "variableChange",
+            "when": {
+              "variableName": "timer.finish",
+              "comparison": "==",
+              "value": true
+            },
+            "actions": [
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "timer.start",
+                    "type": "bool",
+                    "value": false
+                  }
+                }
+              },
+              {
+                "do": "set.variable",
+                "args": {
+                  "variable": {
+                    "name": "STATUS_TIME",
+                    "type": "string",
+                    "value": "null"
+                  }
+                }
+              },
+              {
+                "do": "step.complete"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "entity_id": "fire_exam_step_3",
+      "components": [
+        {
+          "type": "Head",
+          "data": {
+            "text": "Экзамен завершён!"
+          }
+        },
+        {
+          "type": "Text",
+          "subtype": "plain",
+          "data": {
+            "text": "Поздравляем с прохождением экзамена!"
+          }
+        },
+        {
+          "type": "Buttons",
+          "data": {
+            "buttons": [
+              {
+                "id": "repeat",
+                "label": "Пройти ещё раз"
+              },
+              {
+                "id": "next",
+                "label": "В главное меню"
+              }
+            ]
+          }
+        },
+        {
+          "type": "Transform",
+          "data": {
+            "anchor_type": "UI",
+            "position": {
+              "X": 0,
+              "Y": 0,
+              "Z": 0
+            },
+            "rotation": {
+              "X": 0,
+              "Y": 0,
+              "Z": 0,
+              "W": 1
+            }
+          }
+        },
+        {
+          "type": "Correct_Answers",
+          "data": {
+            "success_passed_percent": 1,
+            "answers": {
+              "STATUS_EXTINGUISHER": "Найден огнетушитель",
+              "STATUS_KEY": "Найден ключ",
+              "STATUS_EXTINGUISH": "Произведена попытка тушения пожара",
+              "STATUS_SIGNAL": "Произведено включение средств и систем пожарной автоматики",
+              "STATUS_SAFE": "Остались в пределах безопасной зоны",
+              "STATUS_EXIT": "Найден выход из здания",
+              "STATUS_TIME": "Безопасное время эвакуации не истекло"
+            }
+          }
+        }
+      ],
+      "events": {
+        "triggers": [
+          {
+            "on": "start",
+            "actions": [
+              {
+                "do": "audio.stop",
+                "args": {
+                  "ref": "sirena_audio"
+                }
+              }
+            ]
+          },
+          {
+            "on": "click",
+            "when": {
+              "id": "main.repeat"
+            },
+            "actions": [
+              {
+                "do": "scenario.repeat"
+              }
+            ]
+          },
+          {
+            "on": "click",
+            "when": {
+              "id": "main.next"
+            },
+            "actions": [
+              {
+                "do": "scenario.complete"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "bundles": [
+    {
+      "bundle_id": "fire_exam_bundle_1",
+      "assets": [
+        {
+          "asset_id": "main_navmesh",
+          "asset_type": "navmesh",
+          "url": "https://cdn.mobile.web-ar.studio/geropharm/media/courses/fire/navmesh.bundle"
+        },
+        {
+          "asset_id": "smoke_vfx",
+          "asset_type": "model_res",
+          "url": "Prefabs/Smoke/Smoke"
+        },
+        {
+          "asset_id": "smoke_fire_vfx",
+          "asset_type": "model_res",
+          "url": "Prefabs/SmokeFire/Smoke"
+        },
+        {
+          "asset_id": "extinguisher_model_asset",
+          "asset_type": "model_res",
+          "url": "Prefabs/baloon/baloon"
+        },
+        {
+          "asset_id": "key_model_asset",
+          "asset_type": "model",
+          "url": "https://cdn.mobile.web-ar.studio/geropharm/media/courses/fire/key.glb"
+        },
+        {
+          "asset_id": "extinguish_effect_asset",
+          "asset_type": "model_res",
+          "url": "Prefabs/baloon/baloon_effect"
+        },
+        {
+          "asset_id": "sirena_audio",
+          "asset_type": "audio",
+          "url": "https://cdn.mobile.web-ar.studio/geropharm/media/courses/fire/fire_alert.mp3"
+        },
+        {
+          "asset_id": "extinguish_button_asset",
+          "asset_type": "model",
+          "url": "https://cdn.mobile.web-ar.studio/geropharm/media/courses/fire/potushit.glb"
+        },
+        {
+          "asset_id": "fire_signal_model_asset",
+          "asset_type": "model",
+          "url": "https://cdn.mobile.web-ar.studio/geropharm/media/courses/fire/knopka_system_2.glb"
+        }
+      ]
+    }
+  ],
+  "download": {
+    "status": "not_downloaded",
+    "size_mb": 0,
+    "version": "1.0.0",
+    "downloaded_at": null
+  },
+  "analytics": {
+    "views": 182,
+    "completions": 1,
+    "average_rating": 0,
+    "total_ratings": 0
+  },
+  "created_at": "2026-01-14T11:29:48.685000",
+  "updated_at": "2026-01-20T08:08:06.032000",
+  "is_published": true,
+  "progress": {
+    "percentage": 100,
+    "status": "completed",
+    "last_accessed": "2026-01-15T12:24:55.457000",
+    "completed_steps": [
+      0,
+      1
+    ],
+    "current_step": 2
+  }
+}
